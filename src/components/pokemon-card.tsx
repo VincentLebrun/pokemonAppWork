@@ -1,6 +1,7 @@
 //import tools
 import React, { FunctionComponent, useState } from "react";
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 //import component
 import Pokemon from "../models/pokemon";
 
@@ -13,18 +14,30 @@ type Props = {
   pokemon: Pokemon;
   borderColor?: string;
 };
+
+// Render
 const PokemonCard: FunctionComponent<Props> = ({
   pokemon,
   borderColor = "#009688",
 }) => {
   const [color, setColor] = useState<string>();
+
+  const history = useHistory();
+
+  ///////////////////////////////////FUNCTION////////////////////////
   //Border color on hover
+  const goToPokemon = (id: number) => {
+    history.push(`/pokemons/${id}`);
+  };
+
   const showBorder = () => {
     setColor(borderColor);
   };
   const hideBorder = () => {
     setColor("#f5f5f5");
   };
+
+  ///////////////////////////////////STYLE////////////////////////
 
   const CardHorizontal = styled.div`
     border: solid 4px #f5f5f5;
@@ -46,6 +59,7 @@ const PokemonCard: FunctionComponent<Props> = ({
       onMouseEnter={showBorder}
       onMouseLeave={hideBorder}
       style={{ borderColor: color }}
+      onClick={() => goToPokemon(pokemon.id)}
     >
       <CardImage>
         <img src={pokemon.picture} alt={pokemon.name} />

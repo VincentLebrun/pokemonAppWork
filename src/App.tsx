@@ -6,6 +6,7 @@ import styled from "styled-components";
 //import Page
 import PokemonList from "./pages/pokemon-list";
 import PokemonDetail from "./pages/pokemon-detail";
+import PageNotFound from "./pages/page-not-found";
 
 //function rendering
 const App: FunctionComponent = () => {
@@ -23,7 +24,8 @@ const App: FunctionComponent = () => {
         <Switch>
           <Route exact path="/" component={PokemonList} />
           <Route exact path="/pokemons" component={PokemonList} />
-          <Route path="/pokemons:id" component={PokemonDetail} />
+          <Route path="/pokemons/:id" component={PokemonDetail} />
+          <Route component={PageNotFound} />
         </Switch>
       </ContainerNav>
     </Router>
