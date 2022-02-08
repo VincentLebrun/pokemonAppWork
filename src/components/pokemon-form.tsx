@@ -50,76 +50,76 @@ const PokemonForm: FunctionComponent<Props> = ({ pokemon }) => {
 
   // style
 
-  const Row = styled.div``;
-  const Col = styled.div``;
   const CardHoverable = styled.div``;
   const CardImage = styled.div`
+    display: flex;
+    justify-content: center;
     img {
-      width: "250px";
-      margin: "0 auto";
+      width: 250px;
     }
   `;
   const CardStacked = styled.div``;
-  const CardContent = styled.div``;
-  const FormGroup = styled.div``;
+  const CardContent = styled.div`
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  `;
+  const FormGroup = styled.div`
+    box-shadow: 10px 5px 5px grey;
+    margin-bottom: 5px;
+  `;
   const CardAction = styled.div``;
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Row>
-        <Col>
-          <CardHoverable>
-            <CardImage>
-              <img src={pokemon.picture} alt={pokemon.name} />
-            </CardImage>
-            <CardStacked>
-              <CardContent>
-                {/* Pokemon name */}
-                <FormGroup>
-                  <label>Nom</label>
-                  <input
-                    {...register("name", { required: true, maxLength: 20 })}
-                  />
-                </FormGroup>
-                {/* Pokemon hp */}
-                <FormGroup>
-                  <label>Point de vie</label>
-                  <input
-                    type="number"
-                    {...register("hp", { min: 1, max: 100, maxLength: 20 })}
-                  />
-                </FormGroup>
-                {/* Pokemon cp */}
-                <FormGroup>
-                  <label>Dégâts</label>
-                  <input
-                    type="number"
-                    {...register("cp", { min: 1, max: 100, maxLength: 20 })}
-                  />
-                </FormGroup>
-                {/* Pokemon types */}
-                <FormGroup>
-                  <label>Types</label>
-                  {types.map((type) => (
-                    <div key={type}>
-                      <label>
-                        <input id={type}></input>
-                        <span>
-                          <p className={formatType(type)}>{type}</p>
-                        </span>
-                      </label>
-                    </div>
-                  ))}
-                </FormGroup>
-              </CardContent>
-              <CardAction>
-                {/* Submit button */}
-                <input type="submit" name="Valider" />
-              </CardAction>
-            </CardStacked>
-          </CardHoverable>
-        </Col>
-      </Row>
+      <CardImage>
+        <img src={pokemon.picture} alt={pokemon.name} />
+      </CardImage>
+
+      <CardHoverable>
+        <CardStacked>
+          <CardContent>
+            {/* Pokemon name */}
+            <FormGroup>
+              <label>Nom</label>
+              <input {...register("name", { required: true, maxLength: 20 })} />
+            </FormGroup>
+            {/* Pokemon hp */}
+            <FormGroup>
+              <label>Point de vie</label>
+              <input
+                type="number"
+                {...register("hp", { min: 1, max: 100, maxLength: 20 })}
+              />
+            </FormGroup>
+            {/* Pokemon cp */}
+            <FormGroup>
+              <label>Dégâts</label>
+              <input
+                type="number"
+                {...register("cp", { min: 1, max: 100, maxLength: 20 })}
+              />
+            </FormGroup>
+            {/* Pokemon types */}
+            <FormGroup>
+              <label>Types</label>
+              {types.map((type) => (
+                <div key={type}>
+                  <label>
+                    <input id={type}></input>
+
+                    <p className={formatType(type)}>{type}</p>
+                  </label>
+                </div>
+              ))}
+            </FormGroup>
+          </CardContent>
+          <CardAction>
+            {/* Submit button */}
+            <input type="submit" name="Valider" />
+          </CardAction>
+        </CardStacked>
+      </CardHoverable>
     </form>
   );
 };
