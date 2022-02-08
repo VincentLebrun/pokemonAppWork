@@ -2,8 +2,10 @@
 import React, { FunctionComponent, useState, useEffect } from "react";
 import { RouteComponentProps } from "react-router-dom";
 import styled from "styled-components";
+
 //import component
 import PokemonForm from "../components/pokemon-form";
+
 //import models
 import Pokemon from "../models/pokemon";
 import POKEMONS from "../models/mock-pokemon";

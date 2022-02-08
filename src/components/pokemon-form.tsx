@@ -1,5 +1,5 @@
 //import tools
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useState } from "react";
 import styled from "styled-components";
 import { useForm, SubmitHandler } from "react-hook-form";
 
@@ -12,8 +12,27 @@ import formatType from "../helpers/format-type";
 type Props = {
   pokemon: Pokemon;
 };
+// type field
+type Field = {
+  value: any;
+  error?: string;
+  isValid: boolean;
+};
+// types form
 
+type Inputs = {
+  name: Field;
+  hp: Field;
+  cp: Field;
+  types: Field;
+};
 const PokemonForm: FunctionComponent<Props> = ({ pokemon }) => {
+  const [form, setForm] = useState<Inputs>({
+    name: { value: pokemon.name, isValid: true },
+    hp: { value: pokemon.hp, isValid: true },
+    cp: { value: pokemon.cp, isValid: true },
+    types: { value: pokemon.types, isValid: true },
+  });
   //types pokemon
   const types: string[] = [
     "Plante",
@@ -28,13 +47,7 @@ const PokemonForm: FunctionComponent<Props> = ({ pokemon }) => {
     "Combat",
     "Psy",
   ];
-  // types form
-  type Inputs = {
-    name: String;
-    hp: Number;
-    cp: Number;
-    type: String;
-  };
+
   //form using maybe moved in other folder after
   const {
     register,
@@ -46,7 +59,7 @@ const PokemonForm: FunctionComponent<Props> = ({ pokemon }) => {
   console.log(watch("name"));
   console.log(watch("hp"));
   console.log(watch("cp"));
-  console.log(watch("type"));
+  console.log(watch("types"));
 
   // style
 
@@ -82,12 +95,16 @@ const PokemonForm: FunctionComponent<Props> = ({ pokemon }) => {
             {/* Pokemon name */}
             <FormGroup>
               <label>Nom</label>
-              <input {...register("name", { required: true, maxLength: 20 })} />
+              <input
+                value={form.name.value}
+                {...register("name", { required: true, maxLength: 20 })}
+              />
             </FormGroup>
             {/* Pokemon hp */}
             <FormGroup>
               <label>Point de vie</label>
               <input
+                value={form.hp.value}
                 type="number"
                 {...register("hp", { min: 1, max: 100, maxLength: 20 })}
               />
@@ -96,6 +113,7 @@ const PokemonForm: FunctionComponent<Props> = ({ pokemon }) => {
             <FormGroup>
               <label>Dégâts</label>
               <input
+                value={form.cp.value}
                 type="number"
                 {...register("cp", { min: 1, max: 100, maxLength: 20 })}
               />
