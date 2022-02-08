@@ -27,12 +27,16 @@ type Inputs = {
   types: Field;
 };
 const PokemonForm: FunctionComponent<Props> = ({ pokemon }) => {
-  const [form, setForm] = useState<Inputs>({
+  const [form] = useState<Inputs>({
     name: { value: pokemon.name, isValid: true },
     hp: { value: pokemon.hp, isValid: true },
     cp: { value: pokemon.cp, isValid: true },
     types: { value: pokemon.types, isValid: true },
   });
+
+  // const changeValue = () => {
+  //   setForm(onSubmit);
+  // };
   //types pokemon
   const types: string[] = [
     "Plante",
@@ -47,6 +51,9 @@ const PokemonForm: FunctionComponent<Props> = ({ pokemon }) => {
     "Combat",
     "Psy",
   ];
+  const hasType = (type: string): boolean => {
+    return form.types.value.includes(type);
+  };
 
   //form using maybe moved in other folder after
   const {
@@ -124,7 +131,12 @@ const PokemonForm: FunctionComponent<Props> = ({ pokemon }) => {
               {types.map((type) => (
                 <div key={type}>
                   <label>
-                    <input id={type}></input>
+                    <input
+                      id={type}
+                      type="checkbox"
+                      value={type}
+                      checked={hasType(type)}
+                    ></input>
 
                     <p className={formatType(type)}>{type}</p>
                   </label>
