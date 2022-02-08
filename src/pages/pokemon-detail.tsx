@@ -48,6 +48,7 @@ const PokemonDetail: FunctionComponent<RouteComponentProps<Params>> = ({
             <CardHoverable>
               <CardImage>
                 <img src={pokemon.picture} alt={pokemon.name} />
+                <Link to={`/pokemons/edit/${pokemon.id}`}> edit</Link>
               </CardImage>
               <CardStacked>
                 <CardContent>
