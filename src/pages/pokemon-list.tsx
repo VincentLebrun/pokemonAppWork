@@ -5,6 +5,25 @@ import Pokemon from "../models/pokemon";
 import POKEMONS from "../models/mock-pokemon";
 import PokemonCard from "../components/pokemon-card";
 
+//style
+const Container = styled.div`
+  box-sizing: border-box;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+`;
+const TitleContainer = styled.div`
+  width: 1100px;
+  display: flex;
+
+  justify-content: center;
+`;
+const Title = styled.h1`
+  font-weight: bold;
+`;
+
 const PokemonList: FunctionComponent = () => {
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
 
@@ -12,23 +31,6 @@ const PokemonList: FunctionComponent = () => {
   useEffect(() => {
     setPokemons(POKEMONS);
   }, []);
-  const Container = styled.div`
-    box-sizing: border-box;
-    max-width: 1100px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-  `;
-  const TitleContainer = styled.div`
-    width: 1100px;
-    display: flex;
-
-    justify-content: center;
-  `;
-  const Title = styled.h1`
-    font-weight: bold;
-  `;
 
   return (
     <Container>

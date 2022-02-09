@@ -14,6 +14,19 @@ import formatType from "../helpers/format-type";
 //typing
 type Params = { id: string };
 
+//style
+const Container = styled.div``;
+const Row = styled.div``;
+const ColDisplay = styled.div``;
+const HeaderCenter = styled.h2``;
+const CardHoverable = styled.div``;
+const CardImage = styled.div``;
+const CardStacked = styled.div``;
+const CardContent = styled.div``;
+const BorderedStriped = styled.table``;
+
+const Error = styled.h4``;
+
 //functionnal component
 const PokemonDetail: FunctionComponent<RouteComponentProps<Params>> = ({
   match,
@@ -28,17 +41,6 @@ const PokemonDetail: FunctionComponent<RouteComponentProps<Params>> = ({
     });
   }, [match.params.id]);
 
-  const Container = styled.div``;
-  const Row = styled.div``;
-  const ColDisplay = styled.div``;
-  const HeaderCenter = styled.h2``;
-  const CardHoverable = styled.div``;
-  const CardImage = styled.div``;
-  const CardStacked = styled.div``;
-  const CardContent = styled.div``;
-  const BorderedStriped = styled.table``;
-
-  const Error = styled.h4``;
   return (
     <Container>
       {pokemon ? (

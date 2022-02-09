@@ -15,6 +15,24 @@ type Props = {
   borderColor?: string;
 };
 
+///////////////////////////////////STYLE////////////////////////
+
+const CardHorizontal = styled.div`
+  border: solid 4px #f5f5f5;
+  height: 200px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const CardImage = styled.div``;
+const CardStacked = styled.div`
+  width: 100px;
+`;
+const CardContent = styled.div``;
+const Text = styled.p``;
+
 // Render
 const PokemonCard: FunctionComponent<Props> = ({
   pokemon,
@@ -37,23 +55,6 @@ const PokemonCard: FunctionComponent<Props> = ({
     setColor("#f5f5f5");
   };
 
-  ///////////////////////////////////STYLE////////////////////////
-
-  const CardHorizontal = styled.div`
-    border: solid 4px #f5f5f5;
-    height: 200px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  `;
-
-  const CardImage = styled.div``;
-  const CardStacked = styled.div`
-    width: 100px;
-  `;
-  const CardContent = styled.div``;
-  const Text = styled.p``;
   return (
     <CardHorizontal
       onMouseEnter={showBorder}

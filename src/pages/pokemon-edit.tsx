@@ -12,6 +12,24 @@ import POKEMONS from "../models/mock-pokemon";
 
 type Params = { id: string };
 
+//style
+//style
+const Body = styled.div`
+  box-sizing: border-box;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`;
+const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 900px;
+`;
+const Col = styled.div``;
+
 const PokemonEdit: FunctionComponent<RouteComponentProps<Params>> = ({
   match,
 }) => {
@@ -24,23 +42,6 @@ const PokemonEdit: FunctionComponent<RouteComponentProps<Params>> = ({
       }
     });
   }, [match.params.id]);
-
-  //style
-  const Body = styled.div`
-    box-sizing: border-box;
-    max-width: 1100px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-  `;
-  const Row = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    width: 900px;
-  `;
-  const Col = styled.div``;
 
   return (
     <Body>

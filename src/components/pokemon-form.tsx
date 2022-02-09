@@ -26,6 +26,27 @@ type Inputs = {
   cp: Field;
   types: Field;
 };
+// style
+
+const CardHoverable = styled.div``;
+const CardImage = styled.div`
+  display: flex;
+  justify-content: center;
+  img {
+    width: 250px;
+  }
+`;
+const CardStacked = styled.div``;
+const CardContent = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+`;
+const FormGroup = styled.div`
+  box-shadow: 10px 5px 5px grey;
+  margin-bottom: 5px;
+`;
+const CardAction = styled.div``;
 const PokemonForm: FunctionComponent<Props> = ({ pokemon }) => {
   const [form] = useState<Inputs>({
     name: { value: pokemon.name, isValid: true },
@@ -67,28 +88,6 @@ const PokemonForm: FunctionComponent<Props> = ({ pokemon }) => {
   console.log(watch("hp"));
   console.log(watch("cp"));
   console.log(watch("types"));
-
-  // style
-
-  const CardHoverable = styled.div``;
-  const CardImage = styled.div`
-    display: flex;
-    justify-content: center;
-    img {
-      width: 250px;
-    }
-  `;
-  const CardStacked = styled.div``;
-  const CardContent = styled.div`
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-  `;
-  const FormGroup = styled.div`
-    box-shadow: 10px 5px 5px grey;
-    margin-bottom: 5px;
-  `;
-  const CardAction = styled.div``;
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -137,9 +136,8 @@ const PokemonForm: FunctionComponent<Props> = ({ pokemon }) => {
                       value={type}
                       checked={hasType(type)}
                     ></input>
-
-                    <p className={formatType(type)}>{type}</p>
                   </label>
+                  <p className={formatType(type)}>{type}</p>
                 </div>
               ))}
             </FormGroup>

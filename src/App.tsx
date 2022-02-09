@@ -9,11 +9,13 @@ import PokemonDetail from "./pages/pokemon-detail";
 import PokemonEdit from "./pages/pokemon-edit";
 import PageNotFound from "./pages/page-not-found";
 
+//style
+const ContainerNav = styled.div``;
+const NavRouter = styled.nav``;
+const NavWrapper = styled.div``;
+
 //function rendering
 const App: FunctionComponent = () => {
-  const ContainerNav = styled.div``;
-  const NavRouter = styled.nav``;
-  const NavWrapper = styled.div``;
   return (
     <Router>
       <ContainerNav>

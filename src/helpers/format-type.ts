@@ -3,10 +3,10 @@ const formatType = (type: string): string => {
 
     switch (type) {
       case "Feu":
-        color = "red lighten-1";
+        color = "red";
         break;
       case "Eau":
-        color = "blue lighten-1";
+        color = "blue";
         break;
       case "Plante":
         color = "green lighten-1";
