@@ -43,10 +43,18 @@ const CardContent = styled.div`
   flex-direction: column;
 `;
 const FormGroup = styled.div`
-  box-shadow: 10px 5px 5px grey;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  opacity: 50;
+  position: relative;
 `;
 const CardAction = styled.div``;
+const BodyInput = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+const Input = styled.input.attrs({ type: "checkbox" })`
+  border: solid 1px black;
+`;
 const PokemonForm: FunctionComponent<Props> = ({ pokemon }) => {
   const [form] = useState<Inputs>({
     name: { value: pokemon.name, isValid: true },
@@ -55,10 +63,6 @@ const PokemonForm: FunctionComponent<Props> = ({ pokemon }) => {
     types: { value: pokemon.types, isValid: true },
   });
 
-  // const changeValue = () => {
-  //   setForm(onSubmit);
-  // };
-  //types pokemon
   const types: string[] = [
     "Plante",
     "Feu",
@@ -128,17 +132,11 @@ const PokemonForm: FunctionComponent<Props> = ({ pokemon }) => {
             <FormGroup>
               <label>Types</label>
               {types.map((type) => (
-                <div key={type}>
-                  <label>
-                    <input
-                      id={type}
-                      type="checkbox"
-                      value={type}
-                      checked={hasType(type)}
-                    ></input>
-                  </label>
+                <BodyInput key={type}>
+                  <Input checked={hasType(type)}></Input>
+
                   <p className={formatType(type)}>{type}</p>
-                </div>
+                </BodyInput>
               ))}
             </FormGroup>
           </CardContent>

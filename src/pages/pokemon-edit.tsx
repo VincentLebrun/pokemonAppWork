@@ -48,11 +48,11 @@ const PokemonEdit: FunctionComponent<RouteComponentProps<Params>> = ({
       <Row>
         {pokemon ? (
           <Col>
-            <h2 className="header center">Éditer {pokemon.name}</h2>
+            <h2>Éditer {pokemon.name}</h2>
             <PokemonForm pokemon={pokemon}></PokemonForm>
           </Col>
         ) : (
-          <h4 className="center">Aucun pokémon à afficher !</h4>
+          <h4>Aucun pokémon à afficher !</h4>
         )}
       </Row>
     </Body>

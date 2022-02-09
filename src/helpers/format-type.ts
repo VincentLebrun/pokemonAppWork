@@ -9,37 +9,37 @@ const formatType = (type: string): string => {
         color = "blue";
         break;
       case "Plante":
-        color = "green lighten-1";
+        color = "green";
         break;
       case "Insecte":
-        color = "brown lighten-1";
+        color = "brown";
         break;
       case "Normal":
-        color = "grey lighten-3";
+        color = "grey";
         break;
       case "Vol":
-        color = "blue lighten-3";
+        color = "blue";
         break;
       case "Poison":
-        color = "deep-purple accent-1";
+        color = "purple";
         break;
       case "Fée":
-        color = "pink lighten-4";
+        color = "pink";
         break;
       case "Psy":
-        color = "deep-purple darken-2";
+        color = "purple";
         break;
       case "Electrik":
-        color = "lime accent-1";
+        color = "lime";
         break;
       case "Combat":
-        color = "deep-orange";
+        color = "orange";
         break;
       default:
         color = "grey";
         break;
     }
 
-    return `chip ${color}`;
+    return `color: ${color}`;
   };
 export default formatType;
