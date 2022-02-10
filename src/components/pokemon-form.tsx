@@ -15,9 +15,9 @@ type Props = {
 
 // type field
 type Field = {
-  value: any;
+  value?: any;
   error?: string;
-  isValid: boolean;
+  isValid?: boolean;
 };
 // types form
 
@@ -45,7 +45,7 @@ const CardContent = styled.div`
 `;
 const FormGroup = styled.div`
   margin-bottom: 10px;
-  opacity: 50;
+
   position: relative;
 `;
 const CardAction = styled.div``;
@@ -65,7 +65,7 @@ const Text = styled.p`
 `;
 
 const PokemonForm: FunctionComponent<Props> = ({ pokemon }) => {
-  const [form] = useState<Inputs>({
+  const [form, setForm] = useState<Inputs>({
     name: { value: pokemon.name, isValid: true },
     hp: { value: pokemon.hp, isValid: true },
     cp: { value: pokemon.cp, isValid: true },
@@ -88,6 +88,30 @@ const PokemonForm: FunctionComponent<Props> = ({ pokemon }) => {
   const hasType = (type: string): boolean => {
     return form.types.value.includes(type);
   };
+  // function to update the value of input
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const fieldName: string = e.target.name;
+    const fieldValue: string = e.target.value;
+    const newField: Field = { [fieldName]: { value: fieldValue } };
+    setForm({ ...form, ...newField });
+  };
+  const selectType = (
+    type: string,
+    e: React.ChangeEvent<HTMLInputElement>
+  ): void => {
+    const checked = e.target.checked;
+    let newField: Field;
+    if (checked) {
+      const newTypes: string[] = form.types.value.concat([type]);
+      newField = { value: newTypes };
+    } else {
+      const newTypes: string[] = form.types.value.filter(
+        (currentType: string) => currentType !== type
+      );
+      newField = { value: newTypes };
+    }
+    setForm({ ...form, ...{ types: newField } });
+  };
 
   //form using maybe moved in other folder after
   const {
@@ -95,7 +119,9 @@ const PokemonForm: FunctionComponent<Props> = ({ pokemon }) => {
     handleSubmit,
 
     // formState: { errors },
-  } = useForm<Inputs>();
+  } = useForm<Inputs>({
+    mode: "onChange",
+  });
   const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
 
   return (
@@ -113,6 +139,7 @@ const PokemonForm: FunctionComponent<Props> = ({ pokemon }) => {
               <input
                 value={form.name.value}
                 {...register("name", { required: true, maxLength: 20 })}
+                onChange={(e) => handleInputChange(e)}
               />
             </FormGroup>
             {/* Pokemon hp */}
@@ -122,6 +149,7 @@ const PokemonForm: FunctionComponent<Props> = ({ pokemon }) => {
                 value={form.hp.value}
                 type="number"
                 {...register("hp", { min: 1, max: 100, maxLength: 20 })}
+                onChange={(e) => handleInputChange(e)}
               />
             </FormGroup>
             {/* Pokemon cp */}
@@ -131,6 +159,7 @@ const PokemonForm: FunctionComponent<Props> = ({ pokemon }) => {
                 value={form.cp.value}
                 type="number"
                 {...register("cp", { min: 1, max: 100, maxLength: 20 })}
+                onChange={(e) => handleInputChange(e)}
               />
             </FormGroup>
             {/* Pokemon types */}
@@ -138,7 +167,10 @@ const PokemonForm: FunctionComponent<Props> = ({ pokemon }) => {
               <label>Types</label>
               {types.map((type) => (
                 <BodyInput key={type}>
-                  <Input checked={hasType(type)}></Input>
+                  <Input
+                    checked={hasType(type)}
+                    onChange={(e) => selectType(type, e)}
+                  ></Input>
                   <Text
                     style={{
                       backgroundColor: formatType(type),
