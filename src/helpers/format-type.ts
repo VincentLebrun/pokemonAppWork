@@ -1,9 +1,13 @@
+
+
 const formatType = (type: string): string => {
     let color: string;
 
     switch (type) {
+      
       case "Feu":
-        color = "red";
+        
+        color = 'red';
         break;
       case "Eau":
         color = "blue";
@@ -40,6 +44,6 @@ const formatType = (type: string): string => {
         break;
     }
 
-    return `color: ${color}`;
+    return color
   };
 export default formatType;

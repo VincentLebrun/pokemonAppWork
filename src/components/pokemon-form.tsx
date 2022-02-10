@@ -12,6 +12,7 @@ import formatType from "../helpers/format-type";
 type Props = {
   pokemon: Pokemon;
 };
+
 // type field
 type Field = {
   value: any;
@@ -55,6 +56,14 @@ const BodyInput = styled.div`
 const Input = styled.input.attrs({ type: "checkbox" })`
   border: solid 1px black;
 `;
+const Text = styled.p`
+  backgroundcolor: ${function (props) {
+    if (props.color) {
+      return props.color;
+    }
+  }};
+`;
+
 const PokemonForm: FunctionComponent<Props> = ({ pokemon }) => {
   const [form] = useState<Inputs>({
     name: { value: pokemon.name, isValid: true },
@@ -84,14 +93,10 @@ const PokemonForm: FunctionComponent<Props> = ({ pokemon }) => {
   const {
     register,
     handleSubmit,
-    watch,
+
     // formState: { errors },
   } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
-  console.log(watch("name"));
-  console.log(watch("hp"));
-  console.log(watch("cp"));
-  console.log(watch("types"));
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -134,8 +139,15 @@ const PokemonForm: FunctionComponent<Props> = ({ pokemon }) => {
               {types.map((type) => (
                 <BodyInput key={type}>
                   <Input checked={hasType(type)}></Input>
-
-                  <p className={formatType(type)}>{type}</p>
+                  <Text
+                    style={{
+                      backgroundColor: formatType(type),
+                      borderRadius: "5px",
+                    }}
+                  >
+                    {type}
+                  </Text>
+                  {console.log(type)}
                 </BodyInput>
               ))}
             </FormGroup>
