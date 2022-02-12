@@ -95,6 +95,7 @@ const PokemonForm: FunctionComponent<Props> = ({ pokemon }) => {
     const newField: Field = { [fieldName]: { value: fieldValue } };
     setForm({ ...form, ...newField });
   };
+  // verification to checkbox and update
   const selectType = (
     type: string,
     e: React.ChangeEvent<HTMLInputElement>
