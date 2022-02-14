@@ -1,5 +1,6 @@
 //import tools
 import React, { FunctionComponent, useState } from "react";
+
 import styled from "styled-components";
 import { useForm, SubmitHandler } from "react-hook-form";
 
@@ -8,6 +9,7 @@ import Pokemon from "../models/pokemon";
 
 //import helpers
 import formatType from "../helpers/format-type";
+import { useHistory } from "react-router-dom";
 
 type Props = {
   pokemon: Pokemon;
@@ -123,8 +125,11 @@ const PokemonForm: FunctionComponent<Props> = ({ pokemon }) => {
   } = useForm<Inputs>({
     mode: "onChange",
   });
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
-
+  const onSubmit: SubmitHandler<Inputs> = () => {
+    history.push(`/pokemons/${pokemon.id}`);
+    console.log(form);
+  };
+  const history = useHistory();
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <CardImage>
