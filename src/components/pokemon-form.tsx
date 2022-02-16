@@ -120,8 +120,7 @@ const PokemonForm: FunctionComponent<Props> = ({ pokemon }) => {
   const {
     register,
     handleSubmit,
-
-    // formState: { errors },
+    formState: { errors },
   } = useForm<Inputs>({
     mode: "onChange",
   });
@@ -135,7 +134,6 @@ const PokemonForm: FunctionComponent<Props> = ({ pokemon }) => {
       <CardImage>
         <img src={pokemon.picture} alt={pokemon.name} />
       </CardImage>
-
       <CardHoverable>
         <CardStacked>
           <CardContent>
@@ -147,6 +145,7 @@ const PokemonForm: FunctionComponent<Props> = ({ pokemon }) => {
                 {...register("name", { required: true, maxLength: 20 })}
                 onChange={(e) => handleInputChange(e)}
               />
+              {errors.name && "Veuillez renseigner un nom"}
             </FormGroup>
             {/* Pokemon hp */}
             <FormGroup>
@@ -157,6 +156,7 @@ const PokemonForm: FunctionComponent<Props> = ({ pokemon }) => {
                 {...register("hp", { min: 1, max: 100, maxLength: 20 })}
                 onChange={(e) => handleInputChange(e)}
               />
+              {errors.hp && "Veuillez renseigner un nombre de Point de vie"}
             </FormGroup>
             {/* Pokemon cp */}
             <FormGroup>
@@ -167,6 +167,7 @@ const PokemonForm: FunctionComponent<Props> = ({ pokemon }) => {
                 {...register("cp", { min: 1, max: 100, maxLength: 20 })}
                 onChange={(e) => handleInputChange(e)}
               />
+              {errors.cp && "Veuillez renseigner un nombre de point de combat."}
             </FormGroup>
             {/* Pokemon types */}
             <FormGroup>
@@ -185,7 +186,6 @@ const PokemonForm: FunctionComponent<Props> = ({ pokemon }) => {
                   >
                     {type}
                   </Text>
-                  {console.log(type)}
                 </BodyInput>
               ))}
             </FormGroup>
