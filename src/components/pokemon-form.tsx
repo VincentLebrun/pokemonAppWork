@@ -115,7 +115,15 @@ const PokemonForm: FunctionComponent<Props> = ({ pokemon }) => {
     }
     setForm({ ...form, ...{ types: newField } });
   };
-
+  const isTypesValid = (type: string): boolean => {
+    if (form.types.value.length === 1 && hasType(type)) {
+      return false;
+    }
+    if (form.types.value.length >= 3 && !hasType(type)) {
+      return false;
+    }
+    return true;
+  };
   //form using maybe moved in other folder after
   const {
     register,
@@ -177,6 +185,7 @@ const PokemonForm: FunctionComponent<Props> = ({ pokemon }) => {
                   <Input
                     checked={hasType(type)}
                     onChange={(e) => selectType(type, e)}
+                    disabled={!isTypesValid(type)}
                   ></Input>
                   <Text
                     style={{
