@@ -42,13 +42,14 @@ const CardImage = styled.div`
 const CardStacked = styled.div``;
 const CardContent = styled.div`
   display: flex;
-  justify-content: center;
+
   flex-direction: column;
 `;
 const FormGroup = styled.div`
+  display: flex;
+  justify-content: center;
   margin-bottom: 10px;
-
-  position: relative;
+  text-decoration: none;
 `;
 const CardAction = styled.div``;
 const BodyInput = styled.div`
@@ -56,14 +57,18 @@ const BodyInput = styled.div`
   flex-direction: row;
 `;
 const Input = styled.input.attrs({ type: "checkbox" })`
-  border: solid 1px black;
+  display: flex;
 `;
 const Text = styled.p`
-  backgroundcolor: ${function (props) {
-    if (props.color) {
-      return props.color;
-    }
-  }};
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1em;
+  border-radius: 25px;
+  width: 5em;
+  height: 3em;
+  box-shadow: 0px 0px 20px 8px #42424186;
 `;
 
 const PokemonForm: FunctionComponent<Props> = ({ pokemon }) => {
@@ -190,7 +195,6 @@ const PokemonForm: FunctionComponent<Props> = ({ pokemon }) => {
                   <Text
                     style={{
                       backgroundColor: formatType(type),
-                      borderRadius: "5px",
                     }}
                   >
                     {type}
@@ -201,7 +205,16 @@ const PokemonForm: FunctionComponent<Props> = ({ pokemon }) => {
           </CardContent>
           <CardAction>
             {/* Submit button */}
-            <input type="submit" name="Valider" />
+            <input
+              style={{
+                width: "7em",
+                height: "3em",
+                borderRadius: "2em",
+                color: "white",
+                backgroundColor: "#0A66C2",
+              }}
+              type="submit"
+            />
           </CardAction>
         </CardStacked>
       </CardHoverable>

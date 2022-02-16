@@ -2,24 +2,26 @@
 
 const formatType = (type: string): string => {
     let color: string;
+    let boxShadow:string;
 
     switch (type) {
       
       case "Feu":
         
-        color = 'red';
+        color = '#be4141df';
         break;
       case "Eau":
-        color = "blue";
+        color = "#416dbedf";
         break;
       case "Plante":
-        color = "green";
+        color = "#41be4bdf" ;
+        
         break;
       case "Insecte":
-        color = "brown";
+        color = "#7ed193df";
         break;
       case "Normal":
-        color = "grey";
+        color = "#4166be5f";
         break;
       case "Vol":
         color = "blue";
@@ -28,13 +30,13 @@ const formatType = (type: string): string => {
         color = "purple";
         break;
       case "Fée":
-        color = "pink";
+        color = "#c532be93";
         break;
       case "Psy":
-        color = "purple";
+        color = "#4e024a92";
         break;
       case "Electrik":
-        color = "lime";
+        color = "#d1dd27b0";
         break;
       case "Combat":
         color = "orange";
